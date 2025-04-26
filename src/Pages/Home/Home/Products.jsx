@@ -1,24 +1,8 @@
-// import useProducts from "../../../hooks/useProducts";
-
-import { useEffect, useState } from "react";
+import useProducts from "../../../hooks/useProducts";
 import ProductCard from "./ProductCard";
-import axios from "axios";
 
 const Products = () => {
-//   const [products] = useProducts();
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://admin.refabry.com/api/all/product/get')
-      .then(response => {
-        console.log(response.data); // Check structure first
-        setProducts(response?.data?.data?.data); 
-        console.log(response?.data?.data?.data)// Adjust based on actual data shape
-      })
-      .catch(error => {
-        console.error('Error fetching product data:', error);
-      });
-  }, []);
+  const [products] = useProducts();
 
   return (
     <div className="container mx-auto py-10">

@@ -6,11 +6,13 @@ const useProducts = () => {
   const axiosPublic = usePublic();
 
   useEffect(() => {
-    fetch("https://admin.refabry.com/api/all/product/get")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
+    axiosPublic.get()
+    .then(response => {
+      setProducts(response?.data?.data?.data); 
+    })
+    .catch(error => {
+      console.error('Error fetching product data:', error);
+    });
   }, []);
   return [products];
 };
